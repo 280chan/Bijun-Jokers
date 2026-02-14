@@ -1,0 +1,16 @@
+{
+    "id": "bj",
+    "name": "Bijun Jokers",
+    "display_name": "Bijun Jokers",
+    "author": ["baimao", "280chan", "Brookling"],
+    "description": "Add interesting jokers",
+    "prefix": "bj",
+    "main_file": "Bijun_Jokers.lua",
+    "priority": -10,
+    "badge_colour": "366999",
+    "version": "1.0.1c",
+    "dependencies": [
+        "Steamodded (>=1.0.0~BETA-0323b)",
+        "Lovely (>=0.6)",
+    ],
+}
