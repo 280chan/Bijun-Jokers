@@ -20,8 +20,8 @@ return {
                 name = 'Stabilizer',
                 text = {
                     "Retrigger all {C:attention}Playing Card{}",
-                    "{C:chips}Chips{} can not exceed",
-                    "the base Chips of the hand",
+                    "{C:chips}Chips{} cannot exceed",
+                    "the {C:attention}base{} {C:chips}Chips{} of the hand",
                 },
             },
             j_bj_24_puzzle={
