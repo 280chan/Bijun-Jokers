@@ -22,7 +22,7 @@ function ease_discard(mod, instant, silent)
         G.GAME.energy_saver = nil
     end
     ease_discard_ref(mod, instant, silent)
-
+    G.GAME.current_round.discards_left = math.floor(G.GAME.current_round.discards_left*10 + 0.000001)/10
 end
 
 local ease_hands_played_ref = ease_hands_played
@@ -32,6 +32,7 @@ function ease_hands_played(mod, instant)
         G.GAME.energy_saver = nil
     end
     ease_hands_played_ref(mod, instant)
+    G.GAME.current_round.hands_left = math.floor(G.GAME.current_round.hands_left*10 + 0.000001)/10
 end
 
 local G_FUNCS_can_discard_ref = G.FUNCS.can_discard
@@ -58,7 +59,7 @@ local G_FUNCS_discard_cards_from_highlighted_ref = G.FUNCS.discard_cards_from_hi
 G.FUNCS.discard_cards_from_highlighted = function(e, hook)
     if next(SMODS.find_card('j_bj_energy_saver')) and not hook then
         G.GAME.energy_saver = #G.hand.highlighted
-        G.GAME.current_round.hands_left = math.ceil(G.GAME.current_round.hands_left*10)/10
+        
     end
     G_FUNCS_discard_cards_from_highlighted_ref(e, hook)
 end
@@ -67,7 +68,6 @@ local G_FUNCS_play_cards_from_highlighted_ref = G.FUNCS.play_cards_from_highligh
 G.FUNCS.play_cards_from_highlighted = function(e)
     if next(SMODS.find_card('j_bj_energy_saver')) then
         G.GAME.energy_saver = #G.hand.highlighted
-        G.GAME.current_round.hands_left = math.ceil(G.GAME.current_round.hands_left*10)/10
     end
     G_FUNCS_play_cards_from_highlighted_ref(e)
 end

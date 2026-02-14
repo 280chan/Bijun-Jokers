@@ -8,7 +8,7 @@
     "main_file": "Bijun_Jokers.lua",
     "priority": -10,
     "badge_colour": "366999",
-    "version": "1.0.1d",
+    "version": "1.0.1e",
     "dependencies": [
         "Steamodded (>=1.0.0~BETA-0323b)",
         "Lovely (>=0.6)",
