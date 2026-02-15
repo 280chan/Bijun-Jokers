@@ -72,29 +72,9 @@ G.FUNCS.play_cards_from_highlighted = function(e)
     G_FUNCS_play_cards_from_highlighted_ref(e)
 end
 
-local Sprite_init_ref = Sprite.init
-function Sprite:init(X, Y, W, H, new_sprite_atlas, sprite_pos)
-    if new_sprite_atlas == G.ASSET_ATLAS["bj_jokers"] and sprite_pos.x == 2 and sprite_pos.y == 0 then
-        Moveable.init(self,X, Y, W, H)
-        self.CT = self.VT
-        self.atlas = new_sprite_atlas
-        self.scale = {x=self.atlas.px*0.7, y=self.atlas.py*0.7}
-        self.scale_mag = math.min(self.scale.x/W,self.scale.y/H)
-        self.zoom = true
-
-        self:set_sprite_pos(sprite_pos)
-
-        if getmetatable(self) == Sprite then 
-            table.insert(G.I.SPRITE, self)
-        end
-    else
-        Sprite_init_ref(self, X, Y, W, H, new_sprite_atlas, sprite_pos)
-    end
-end
-
 local Sprite_set_sprites_pos_ref = Sprite.set_sprite_pos
 function Sprite:set_sprite_pos(sprite_pos)
-    if self.atlas == G.ASSET_ATLAS["bj_jokers"] and sprite_pos.x == 2 and sprite_pos.y == 0 then
+    if self.atlas == G.ASSET_ATLAS["bj_jokers"] and sprite_pos.x == 2 and sprite_pos.y == 0.1 then
         if sprite_pos and sprite_pos.v then 
             self.sprite_pos = {x = (math.random(sprite_pos.v)-1), y = sprite_pos.y}
         else
@@ -123,15 +103,6 @@ function Game:update_new_round(dt)
         end
     else
         Game_update_new_round_ref(self, dt)
-    end
-end
-
-local Card_set_sprites_ref = Card.set_sprites
-function Card:set_sprites(_center, _front)
-    Card_set_sprites_ref(self, _center, _front)
-    if _center and _center.name == 'Stabilizer' and (_center.discovered or self.bypass_discovery_center) then
-        self.T.h = G.CARD_H*0.7
-        self.T.w = G.CARD_W*0.7
     end
 end
 
@@ -301,6 +272,7 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     pos = { x = 2, y = 0 },
+    pixel_size = { w = 53, h = 67 },
     loc_txt ={},
     atlas = 'jokers',
     config = { extra = { repetition = 1 } },
